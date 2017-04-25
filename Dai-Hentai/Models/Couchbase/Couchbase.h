@@ -11,6 +11,12 @@
 #import "SearchInfo.h"
 #import "HentaiInfo.h"
 
+typedef enum {
+    CouchbaseStoreTypeHistory,
+    CouchbaseStoreTypeFavorite,
+    CouchbaseStoreTypeDownload,
+} CouchbaseStoreType;
+
 @interface Couchbase : NSObject
 
 + (void)addGalleryBy:(NSString *)gid token:(NSString *)token index:(NSInteger)index pages:(NSArray<NSString *> *)pages;
@@ -21,7 +27,8 @@
 
 + (NSInteger)fetchUserLatestPage:(HentaiInfo *)hentaiInfo;
 + (void)updateUserLatestPage:(HentaiInfo *)hentaiInfo userLatestPage:(NSInteger)userLatestPage;
-+ (NSArray<NSDictionary *> *)historiesFrom:(NSInteger)start length:(NSInteger)length;
+
++ (NSArray<NSDictionary *> *)sortFrom:(CouchbaseStoreType)type start:(NSInteger)start length:(NSInteger)length;
 + (void)deleteAllHistories:(void (^)(NSInteger total, NSInteger index, HentaiInfo *info))handler onFinish:(void (^)(BOOL successed))finish;
 
 @end

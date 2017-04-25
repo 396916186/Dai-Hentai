@@ -18,6 +18,7 @@
 		1C1AD03D1E49B79800544217 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1AD03B1E49B79800544217 /* Main.storyboard */; };
 		1C1AD03F1E49B79800544217 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C1AD03E1E49B79800544217 /* Assets.xcassets */; };
 		1C1AD0421E49B79800544217 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1AD0401E49B79800544217 /* LaunchScreen.storyboard */; };
+		1C22F3621EBEF9FA006889AB /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C22F3611EBEF9FA006889AB /* FavoriteViewController.m */; };
 		1C33D10B1E5F34BC00F0EB12 /* SearchKeywordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C33D1091E5F34BC00F0EB12 /* SearchKeywordCell.m */; };
 		1C33D10E1E5F35A600F0EB12 /* SearchRatingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C33D10D1E5F35A600F0EB12 /* SearchRatingCell.m */; };
 		1C33D1111E5F391A00F0EB12 /* SearchCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C33D1101E5F391A00F0EB12 /* SearchCategoryCell.m */; };
@@ -69,6 +70,8 @@
 		1C1AD03E1E49B79800544217 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C1AD0411E49B79800544217 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C1AD0431E49B79800544217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C22F3601EBEF9FA006889AB /* FavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteViewController.h; sourceTree = "<group>"; };
+		1C22F3611EBEF9FA006889AB /* FavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteViewController.m; sourceTree = "<group>"; };
 		1C33D1081E5F34BC00F0EB12 /* SearchKeywordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchKeywordCell.h; sourceTree = "<group>"; };
 		1C33D1091E5F34BC00F0EB12 /* SearchKeywordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchKeywordCell.m; sourceTree = "<group>"; };
 		1C33D10C1E5F35A600F0EB12 /* SearchRatingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRatingCell.h; sourceTree = "<group>"; };
@@ -230,6 +233,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		1C22F35F1EBEF9CA006889AB /* FavoriteViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1C22F3601EBEF9FA006889AB /* FavoriteViewController.h */,
+				1C22F3611EBEF9FA006889AB /* FavoriteViewController.m */,
+			);
+			path = FavoriteViewController;
+			sourceTree = "<group>";
+		};
 		1C33D1061E5F34BC00F0EB12 /* SearchCategoryCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +303,7 @@
 				1CA192D21E926B3100D352B3 /* RelatedViewController */,
 				1C0867F81E5C8F2100E361B5 /* SearchViewController */,
 				1C0CF4951E82D449005ADDFA /* HistoriesViewController */,
+				1C22F35F1EBEF9CA006889AB /* FavoriteViewController */,
 				1C0608401E53471100E6A285 /* GalleryViewController */,
 			);
 			path = ViewControllers;
@@ -640,6 +653,7 @@
 				1CBF60841E4D9ABC000CA9E5 /* FilesManager.m in Sources */,
 				1CE8E5E21E4D7A24005B1B18 /* Couchbase.m in Sources */,
 				1C1AD0341E49B79800544217 /* main.m in Sources */,
+				1C22F3621EBEF9FA006889AB /* FavoriteViewController.m in Sources */,
 				1C97CB321E5EBF17000A8874 /* SearchBaseCell.m in Sources */,
 				1C0608471E534ADF00E6A285 /* GalleryCell.m in Sources */,
 				1C0867FF1E5C96B100E361B5 /* SearchInfo.m in Sources */,

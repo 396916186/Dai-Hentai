@@ -70,9 +70,28 @@
                 emit(key, nil);
             } version:@"1"];
             
-            CBLView *sort = [db viewNamed:@"sort"];
-            [sort setMapBlock: ^(CBLJSONDict *doc, CBLMapEmitBlock emit) {
+            // 歷史紀錄包含全部看過內容
+            CBLView *sortHistory = [db viewNamed:@"sortHistory"];
+            [sortHistory setMapBlock: ^(CBLJSONDict *doc, CBLMapEmitBlock emit) {
                 emit(doc[@"timeStamp"], nil);
+            } version:@"1"];
+            
+            // 最愛只列出最愛的部分
+            CBLView *sortFavorite = [db viewNamed:@"sortFavorite"];
+            [sortFavorite setMapBlock: ^(CBLJSONDict *doc, CBLMapEmitBlock emit) {
+                NSNumber *isFavorite = doc[@"isFavorite"];
+                if (isFavorite.boolValue) {
+                    emit(doc[@"timeStamp"], nil);
+                }
+            } version:@"1"];
+            
+            // 下載只列出下載的部分
+            CBLView *sortDownloaded = [db viewNamed:@"sortDownloaded"];
+            [sortDownloaded setMapBlock: ^(CBLJSONDict *doc, CBLMapEmitBlock emit) {
+                NSNumber *isDownloaded = doc[@"isDownloaded"];
+                if (isDownloaded.boolValue) {
+                    emit(doc[@"timeStamp"], nil);
+                }
             } version:@"1"];
             
             objc_setAssociatedObject(self, _cmd, db, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -201,15 +220,33 @@
     }
 }
 
-+ (NSArray<NSDictionary *> *)historiesFrom:(NSInteger)start length:(NSInteger)length {
-    CBLQuery *query = [[[self histories] viewNamed:@"sort"] createQuery];
++ (NSArray<NSDictionary *> *)sortFrom:(CouchbaseStoreType)type start:(NSInteger)start length:(NSInteger)length {
+    CBLView *view;
+    switch (type) {
+        case CouchbaseStoreTypeHistory:
+            view = [[self histories] viewNamed:@"sortHistory"];
+            break;
+            
+        case CouchbaseStoreTypeFavorite:
+            view = [[self histories] viewNamed:@"sortFavorite"];
+            break;
+            
+        case CouchbaseStoreTypeDownload:
+            view = [[self histories] viewNamed:@"sortDownloaded"];
+            break;
+    }
+    CBLQuery *query = [view createQuery];
     query.skip = start;
     query.limit = length;
     query.descending = YES;
+    return [self query:query start:start length:length];
+}
+
++ (NSArray<NSDictionary *> *)query:(CBLQuery *)query start:(NSInteger)start length:(NSInteger)length {
     NSError *error;
     CBLQueryEnumerator *results = [query run:&error];
     if (error) {
-        NSLog(@"historiesFrom Fail");
+        NSLog(@"Sort Query Fail");
         return nil;
     }
     else {

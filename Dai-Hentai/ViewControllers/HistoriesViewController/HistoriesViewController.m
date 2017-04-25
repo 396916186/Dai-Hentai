@@ -26,7 +26,7 @@
 - (void)fetchGalleries {
     if ([self.pageLocker tryLock]) {
         NSInteger index = self.pageIndex * pageCout;
-        NSArray *hentaiInfos = [Couchbase historiesFrom:index length:pageCout];
+        NSArray *hentaiInfos = [Couchbase sortFrom:CouchbaseStoreTypeHistory start:index length:pageCout];
         if (hentaiInfos && hentaiInfos.count) {
             [self.galleries addObjectsFromArray:hentaiInfos];
             [self.collectionView reloadData];

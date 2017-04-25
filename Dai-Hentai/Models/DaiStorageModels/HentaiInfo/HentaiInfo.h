@@ -27,5 +27,7 @@ DaiStorageArrayConverter(NSString)
 
 @property (nonatomic, strong) NSNumber *userLatestPage;
 @property (nonatomic, strong) NSNumber *timeStamp;
+@property (nonatomic, strong) NSNumber *isFavorite;
+@property (nonatomic, strong) NSNumber *isDownloaded;
 
 @end
