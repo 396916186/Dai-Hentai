@@ -70,10 +70,14 @@
                 emit(key, nil);
             } version:@"1"];
             
-            // 歷史紀錄包含全部看過內容
+            // 歷史紀錄不包含最愛和下載
             CBLView *sortHistory = [db viewNamed:@"sortHistory"];
             [sortHistory setMapBlock: ^(CBLJSONDict *doc, CBLMapEmitBlock emit) {
-                emit(doc[@"timeStamp"], nil);
+                NSNumber *isFavorite = doc[@"isFavorite"];
+                NSNumber *isDownloaded = doc[@"isDownloaded"];
+                if (!isFavorite.boolValue && !isDownloaded.boolValue) {
+                    emit(doc[@"timeStamp"], nil);
+                }
             } version:@"1"];
             
             // 最愛只列出最愛的部分
@@ -267,7 +271,7 @@
 }
 
 + (void)deleteAllHistories:(void (^)(NSInteger total, NSInteger index, HentaiInfo *info))handler onFinish:(void (^)(BOOL successed))finish {
-    CBLQuery *query = [[self histories] createAllDocumentsQuery];
+    CBLQuery *query = [[[self histories] viewNamed:@"sortHistory"] createQuery];
     NSError *error;
     CBLQueryEnumerator *results = [query run:&error];
     if (error) {
